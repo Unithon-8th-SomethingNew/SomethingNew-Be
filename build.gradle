@@ -6,7 +6,7 @@ plugins {
 
 group = 'unithon-8th'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
 
 configurations {
 	compileOnly {
