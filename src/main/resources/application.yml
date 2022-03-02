@@ -27,7 +27,6 @@ spring:
     generate-ddl: true
     open-in-view: false
 
-
 #cloud:
 #  aws:
 #    credentials:
