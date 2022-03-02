@@ -27,6 +27,13 @@ spring:
     generate-ddl: true
     open-in-view: false
 
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+          
 #cloud:
 #  aws:
 #    credentials:

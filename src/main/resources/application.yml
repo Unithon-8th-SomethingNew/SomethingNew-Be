@@ -27,6 +27,19 @@ spring:
     generate-ddl: true
     open-in-view: false
 
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: trace
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+
 #cloud:
 #  aws:
 #    credentials:
