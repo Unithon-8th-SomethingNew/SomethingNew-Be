@@ -1,6 +1,11 @@
 aws:
   secretsmanager:
     name: somethingnew
+    prefix:
+    default-context: service
+    fail-fast: true
+    enabled: true
+
 cloud:
   aws:
     region:
