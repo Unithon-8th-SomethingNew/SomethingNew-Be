@@ -1,9 +1,9 @@
 spring:
 
   datasource:
-    url: jdbc:mysql://something-new.cmetuamcwmrz.ap-northeast-2.rds.amazonaws.com:3306/somethingnew?serverTimezone=UTC&characterEncoding=UTF-8
-    username: admin
-    password: unithon8th
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PW}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 30
@@ -26,6 +26,19 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     generate-ddl: true
     open-in-view: false
+
+cloud:
+  aws:
+    credentials:
+      use-default-aws-credentials-chain: true
+      accessKey: ${AWS_ACCESS_KEY}
+      secretKey: ${AWS_SECRET_KEY}
+    region:
+      static: ${AWS_REGION}
+#    s3:
+#      bucket: ${AWS_S3_BUCKET_NAME}
+#    stack:
+#      auto: false
 
 server:
   port: 8082
