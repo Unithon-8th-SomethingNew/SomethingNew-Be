@@ -29,11 +29,23 @@ spring:
 
 logging:
   level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: trace
     com:
       amazonaws:
         util:
           EC2MetadataUtils: error
-          
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${AWS_ACCESS_KEY_ID}
+      secret-key: ${AWS_SECRET_ACCESS_KEY}
+
 #cloud:
 #  aws:
 #    credentials:
