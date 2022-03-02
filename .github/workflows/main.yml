@@ -22,6 +22,14 @@ jobs:
       - name: Make zip file
         run: zip -r ./$GITHUB_SHA.zip .
         shell: bash
+        
+      # 5. 빌드 전 그래들 권한 부여
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      # 6. 그래들 빌드
+      - name: Build with Gradle
+        run: ./gradlew build
     
       # 3. AWS 사용자 권한?
       - name: Configure AWS credentials
@@ -42,10 +50,4 @@ jobs:
             /secret/somethingnew
           parse-json: false
 
-      # 5. 빌드 전 그래들 권한 부여
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
-
-      # 6. 그래들 빌드
-      - name: Build with Gradle
-        run: ./gradlew build
+      
