@@ -18,11 +18,30 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+    
+      # 3. AWS 사용자 권한?
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
 
+      # 4. AWS Secrets Manger 환경변수 사용
+      - name: Read secrets from AWS Secrets Manager into environment variables
+        uses: abhilash1in/aws-secrets-manager-action@v1.1.0
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+          secrets: |
+            /secret/worry
+          parse-json: false
+
+      # 5. 빌드 전 그래들 권한 부여
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
-        shell: bash
 
+      # 6. 그래들 빌드
       - name: Build with Gradle
-        run: ./gradlew build
-        shell: bash
+        run: ./gradlew clean build
