@@ -61,4 +61,4 @@ cloud:
 #      auto: false
 
 server:
-  port: 8082
+  port: 3333
