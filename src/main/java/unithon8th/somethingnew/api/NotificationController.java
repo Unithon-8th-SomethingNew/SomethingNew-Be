@@ -9,11 +9,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import unithon8th.somethingnew.domain.user.User;
 import unithon8th.somethingnew.dto.nitification.NotificationRequestDto;
 import unithon8th.somethingnew.service.fcm.AndroidPushNotificationsService;
 import unithon8th.somethingnew.service.fcm.AndroidPushPeriodicNotifications;
 import unithon8th.somethingnew.service.user.UserService;
 
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 

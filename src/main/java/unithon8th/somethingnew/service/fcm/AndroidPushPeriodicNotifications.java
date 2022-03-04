@@ -33,7 +33,7 @@ public class AndroidPushPeriodicNotifications {
             body.put("registration_ids", array);
 
             JSONObject notification = new JSONObject();
-            notification.put("title", optionalFromUser.get().getUsername() + "님이 찾아왔어요!");
+            notification.put("title", optionalFromUser.get().getUsername() + "님이 찾아왔어요! - " + optionalFromUser.get().getUserId());
             notification.put("body", "문을 열어 손님을 맞아주세요");
 
             body.put("notification", notification);
