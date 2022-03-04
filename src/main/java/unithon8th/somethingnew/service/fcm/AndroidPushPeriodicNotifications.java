@@ -45,4 +45,26 @@ public class AndroidPushPeriodicNotifications {
             return null;
         }
     }
+
+    public String rejectNotificationJson(Long userId) throws JSONException {
+        Optional<User> optionalUser = userService.findUserByUserId(userId);
+        if (optionalUser.isPresent()) {
+            JSONObject body = new JSONObject();
+            JSONArray array = new JSONArray();
+            array.put(optionalUser.get().getFcmToken());
+
+            body.put("registration_ids", array);
+
+            JSONObject notification = new JSONObject();
+            notification.put("title", "문을 열어주지 않아 손님이 돌아갔어요");
+
+            body.put("notification", notification);
+
+            System.out.println(body.toString());
+
+            return body.toString();
+        } else {
+            return null;
+        }
+    }
 }
