@@ -28,14 +28,19 @@ public class AuthController {
 
     private final UserService userService;
     //커밋용주석
-
     @PostMapping(value = "/kakao")
-    public ResponseEntity<UserResponseDto> giveToken(@RequestParam("token") String accessToken) {
+    public ResponseEntity<UserResponseDto> giveToken(@RequestParam("token") String accessToken,@RequestParam("fcmToken") String fcmToken) {
         System.out.println("accessToken = " + accessToken);
+        System.out.println("fcmToken = " + fcmToken);
+
         UserRequestDto userInfo = kakaoService.getUserInfo(accessToken);   //accessToken으로 유저정보 받아오기
         if (userInfo.getSocialId() != null) {
+
             //kakaoId 기준으로 DB select하여 User 데이터가 없으면 Insert, 있으면 Update
-            userService.insertOrUpdateUser(userInfo);
+            userService.insertOrUpdateUser(userInfo,fcmToken);
+
+            Optional<User> userByKakaoId = userService.findUserByKakaoId(userInfo.getSocialId());
+
             //UserResponseDto에 userId 추가
             UserResponseDto userResponseDto = new UserResponseDto(userInfo.getUsername());
 
@@ -46,14 +51,15 @@ public class AuthController {
     }
 
     @PostMapping("/naver")
-    public ResponseEntity<UserResponseDto> getToken(@RequestParam("token") String accessToken){
-        System.out.println("accessToken = " + accessToken);
-        UserRequestDto userInfo = naverService.getUserInfo(accessToken);
-        if(userInfo.getSocialId() != null){
-            userService.insertOrUpdateUser(userInfo);
-
-            UserResponseDto userResponseDto = new UserResponseDto(userInfo.getUsername());
-
+    public ResponseEntity<UserResponseDto> getToken(@RequestParam("token")String access_token,@RequestParam("fcmToken") String fcmToken){
+        System.out.println("access_token = " + access_token);
+        System.out.println("fcmToken = " + fcmToken);
+        UserRequestDto userInfo = naverService.getUserInfo(access_token);
+        if(userInfo.getSocialId()==null){
+            userService.naverInsertOrUpdate(userInfo,fcmToken);
+            Optional<User> findNaverUser = userService.findUserByNaverId(userInfo.getSocialId());
+            UserResponseDto userResponseDto=new UserResponseDto(userInfo.getUsername());
+            log.info(findNaverUser.get().getFcmToken());
             return ResponseEntity.ok(userResponseDto);
         }else {
             return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
