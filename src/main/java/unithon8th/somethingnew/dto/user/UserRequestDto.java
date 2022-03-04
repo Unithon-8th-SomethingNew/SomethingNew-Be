@@ -19,12 +19,13 @@ public class UserRequestDto {
     private SocialType socialType;
     private String imgURL;
     private String fcmToken;
+    private String street;
 
 
     //커밋용주석
     //UserRequestDto를 User Entity로 변환하여 return
     public User toEntity(){
-        User user = new User(this.username, this.email, this.socialId, Role.USER, this.imgURL, this.socialType, this.fcmToken);
+        User user = new User(this.username, this.email, this.socialId, Role.USER, this.imgURL, this.socialType, this.fcmToken,this.street);
         return user;
     }
 

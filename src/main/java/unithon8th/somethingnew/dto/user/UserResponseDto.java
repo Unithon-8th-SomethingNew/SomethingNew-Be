@@ -8,5 +8,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor//커밋용주석
 public class UserResponseDto {
-    private String username;
+    private Long uid;
+    private String name;
+    private String profile_url;
 }
