@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import unithon8th.somethingnew.domain.user.User;
-import unithon8th.somethingnew.dto.user.NaverRequestDto;
 import unithon8th.somethingnew.dto.user.UserRequestDto;
 import unithon8th.somethingnew.dto.user.UserResponseDto;
 import unithon8th.somethingnew.service.KakaoService;
@@ -35,12 +34,8 @@ public class AuthController {
         System.out.println("accessToken = " + accessToken);
         UserRequestDto userInfo = kakaoService.getUserInfo(accessToken);   //accessToken으로 유저정보 받아오기
         if (userInfo.getSocialId() != null) {
-
             //kakaoId 기준으로 DB select하여 User 데이터가 없으면 Insert, 있으면 Update
             userService.insertOrUpdateUser(userInfo);
-
-            Optional<User> userByKakaoId = userService.findUserByKakaoId(userInfo.getSocialId());
-
             //UserResponseDto에 userId 추가
             UserResponseDto userResponseDto = new UserResponseDto(userInfo.getUsername());
 
@@ -51,13 +46,13 @@ public class AuthController {
     }
 
     @PostMapping("/naver")
-    public ResponseEntity<UserResponseDto> getToken(@RequestParam("token")String access_token){
-        System.out.println("access_token = " + access_token);
-        NaverRequestDto userInfo = naverService.getUserInfo(access_token);
-        if(userInfo.getSocialId()==null){
-            userService.naverInsertOrUpdate(userInfo);
-            Optional<User> findNaverUser = userService.findUserByNaverId(userInfo.getSocialId());
-            UserResponseDto userResponseDto=new UserResponseDto(userInfo.getUsername());
+    public ResponseEntity<UserResponseDto> getToken(@RequestParam("token")String accessToken){
+        System.out.println("accessToken = " + accessToken);
+        UserRequestDto userInfo = naverService.getUserInfo(accessToken);
+        if(userInfo.getSocialId() != null){
+            userService.insertOrUpdateUser(userInfo);
+
+            UserResponseDto userResponseDto = new UserResponseDto(userInfo.getUsername());
 
             return ResponseEntity.ok(userResponseDto);
         }else {

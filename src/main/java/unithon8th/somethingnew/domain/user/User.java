@@ -37,17 +37,13 @@ public class User {//커밋용주석
     @Column(name = "imgUrl",nullable = false)
     private String imgUrl;
 
-    @Column(name = "refreshToken")
-    private String refreshToken;
 
-
-    public User(String username, String email, String socialId, Role role, String imgUrl, String refreshToken, SocialType socialType) {
+    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType) {
         this.username = username;
         this.email = email;
         this.socialId = socialId;
         this.role = role;
         this.imgUrl = imgUrl;
-        this.refreshToken = refreshToken;
         this.socialType=socialType;
     }
 

@@ -16,28 +16,14 @@ public class UserRequestDto {
     private String username;
     private String email;
     private String socialId;
+    private SocialType socialType;
     private String imgURL;
-    private String refreshToken;
-
-    public UserRequestDto(String username, String email, String kakaoId, String imgURL, String refreshToken) {
-        this.username = username;
-        this.email = email;
-        this.socialId = kakaoId;
-        this.imgURL = imgURL;
-        this.refreshToken = refreshToken;
-    }
 
 
-    public UserRequestDto(String username, String email, String kakaoId, String imgURL) {
-        this.username = username;
-        this.email = email;
-        this.socialId = kakaoId;
-        this.imgURL = imgURL;
-    }
     //커밋용주석
     //UserRequestDto를 User Entity로 변환하여 return
     public User toEntity(){
-        User user = new User(this.username, this.email, this.socialId, Role.USER, this.imgURL, this.refreshToken, SocialType.KAKAO);
+        User user = new User(this.username, this.email, this.socialId, Role.ROLE_USER, this.imgURL, this.socialType);
         return user;
     }
 
