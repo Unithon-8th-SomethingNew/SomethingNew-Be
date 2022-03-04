@@ -58,7 +58,7 @@ public class KakaoService {
 
             //    UserRequestDto에 값 주입
             userInfo.setUsername(nickname);
-            userInfo.setKakaoId(kakaoId);
+            userInfo.setSocialId(kakaoId);
             userInfo.setEmail(email);
             userInfo.setImgURL(imgURL);
 

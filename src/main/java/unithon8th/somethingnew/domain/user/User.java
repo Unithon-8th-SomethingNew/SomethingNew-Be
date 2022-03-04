@@ -27,8 +27,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column(name = "kakaoId",nullable = false)
-    private String kakaoId;
+    @Column(name = "socialType")
+    @Enumerated(EnumType.STRING)
+    private SocialType socialType;
+
+    @Column(name = "socialId",nullable = false)
+    private String socialId;
 
     @Column(name = "imgUrl",nullable = false)
     private String imgUrl;
@@ -37,13 +41,19 @@ public class User {
     private String refreshToken;
 
 
-    public User(String username, String email, String kakaoId, Role role, String imgUrl, String refreshToken) {
+    public User(String username, String email, String socialId, Role role, String imgUrl, String refreshToken, SocialType socialType) {
         this.username = username;
         this.email = email;
-        this.kakaoId = kakaoId;
+        this.socialId = socialId;
         this.role = role;
         this.imgUrl = imgUrl;
         this.refreshToken = refreshToken;
+        this.socialType=socialType;
     }
 
+    public void toUpdateUser(String username,String email,String imgUrl){
+        this.username=username;
+        this.email=email;
+        this.imgUrl=imgUrl;
+    }
 }
