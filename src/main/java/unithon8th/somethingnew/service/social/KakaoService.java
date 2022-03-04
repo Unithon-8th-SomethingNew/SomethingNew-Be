@@ -1,4 +1,4 @@
-package unithon8th.somethingnew.service;
+package unithon8th.somethingnew.service.social;
 
 
 import com.google.gson.JsonElement;

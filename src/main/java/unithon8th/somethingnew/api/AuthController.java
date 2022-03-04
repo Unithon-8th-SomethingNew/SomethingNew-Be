@@ -8,14 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import unithon8th.somethingnew.domain.user.User;
 import unithon8th.somethingnew.dto.user.UserRequestDto;
 import unithon8th.somethingnew.dto.user.UserResponseDto;
-import unithon8th.somethingnew.service.KakaoService;
-import unithon8th.somethingnew.service.NaverService;
-import unithon8th.somethingnew.service.UserService;
-
-import java.util.Optional;
+import unithon8th.somethingnew.service.social.KakaoService;
+import unithon8th.somethingnew.service.social.NaverService;
+import unithon8th.somethingnew.service.user.UserService;
 
 @RequiredArgsConstructor
 @RequestMapping("/auth")
