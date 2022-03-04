@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import unithon8th.somethingnew.domain.user.SocialType;
 import unithon8th.somethingnew.dto.user.UserRequestDto;
 
 import java.io.BufferedReader;
@@ -61,6 +62,7 @@ public class KakaoService {
             userInfo.setSocialId(kakaoId);
             userInfo.setEmail(email);
             userInfo.setImgURL(imgURL);
+            userInfo.setSocialType(SocialType.KAKAO);
 
 
         } catch (IOException e) {   // 잘못된 값 주입하고 에러 터지는 지 Test

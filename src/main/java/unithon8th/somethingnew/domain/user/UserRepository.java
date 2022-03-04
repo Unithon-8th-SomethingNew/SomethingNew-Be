@@ -14,18 +14,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUserId(Long userId);
 
-    Optional<User> findByKakaoId(String kakaoId);
+    Optional<User> findBySocialIdAndSocialType(String socialId, SocialType socialType);
 
-    Optional<User> findByNaverId(String naverId);
-
-
-    //update 부분 jpa 변경감지로 변환
     @Modifying(clearAutomatically = true)
-    @Query("UPDATE User u SET u.username = ?1, u.email = ?2, u.imgUrl = ?3, u.refreshToken = ?4 WHERE u.socialId = ?5")
-    void updateUserByKakaoId(String username, String email, String imgURL, String refreshToken, String socialId);
-
-    @Query("SELECT u.refreshToken FROM User u WHERE u.socialId = ?1")
-    String findRefreshTokenByKakaoId(String kakaoId);
+    @Query("UPDATE User u SET u.username = ?1, u.email = ?2, u.imgUrl = ?3 WHERE u.socialId = ?4 AND u.socialType = ?5")
+    void updateUserBySocialIdAndSocialType(String username, String email, String imgURL, String socialId, SocialType socialType);
 
     void delete(User user);
 
