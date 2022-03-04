@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/auth/**").permitAll() //로그인 화면 접근 가능
-                .antMatchers("/send").permitAll()
+                .antMatchers("/knock").permitAll()
                 .antMatchers("/").permitAll() //메인 화면 접근 가능
                 .anyRequest().hasRole("USER")
                 .and()

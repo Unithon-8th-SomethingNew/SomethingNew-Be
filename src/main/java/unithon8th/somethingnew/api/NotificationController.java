@@ -1,5 +1,6 @@
 package unithon8th.somethingnew.api;
 
+import lombok.RequiredArgsConstructor;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,27 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import unithon8th.somethingnew.dto.nitification.NotificationRequestDto;
 import unithon8th.somethingnew.service.fcm.AndroidPushNotificationsService;
 import unithon8th.somethingnew.service.fcm.AndroidPushPeriodicNotifications;
+import unithon8th.somethingnew.service.user.UserService;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+@RequiredArgsConstructor
 @RestController
 public class NotificationController {
-
+    private final UserService userService;
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     AndroidPushNotificationsService androidPushNotificationsService;
 
-    @GetMapping(value = "/send")
-    public @ResponseBody ResponseEntity<String> send(@RequestParam("token") String deviceToken) throws JSONException, InterruptedException  {
-        String notifications = AndroidPushPeriodicNotifications.PeriodicNotificationJson(deviceToken);
+    @GetMapping(value = "/knock")
+    public @ResponseBody ResponseEntity<String> send(@RequestBody NotificationRequestDto notificationRequestDto) throws JSONException, InterruptedException  {
+        AndroidPushPeriodicNotifications androidPushPeriodicNotifications = new AndroidPushPeriodicNotifications(userService);
+        String notifications = androidPushPeriodicNotifications.PeriodicNotificationJson(notificationRequestDto);
 
         HttpEntity<String> request = new HttpEntity<>(notifications);
 
