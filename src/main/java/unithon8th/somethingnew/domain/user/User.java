@@ -40,13 +40,14 @@ public class User {//커밋용주석
     @Column(name = "fcmToken")
     private String fcmToken;
 
-    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType) {
+    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken) {
         this.username = username;
         this.email = email;
         this.socialId = socialId;
         this.role = role;
         this.imgUrl = imgUrl;
-        this.socialType=socialType;
+        this.socialType = socialType;
+        this.fcmToken = fcmToken;
     }
 
     public void toUpdateUser(String username,String email,String imgUrl){
