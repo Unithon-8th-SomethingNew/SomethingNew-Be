@@ -8,14 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import unithon8th.somethingnew.domain.user.User;
 import unithon8th.somethingnew.dto.user.UserRequestDto;
 import unithon8th.somethingnew.dto.user.UserResponseDto;
-import unithon8th.somethingnew.service.KakaoService;
-import unithon8th.somethingnew.service.NaverService;
-import unithon8th.somethingnew.service.UserService;
-
-import java.util.Optional;
+import unithon8th.somethingnew.service.social.KakaoService;
+import unithon8th.somethingnew.service.social.NaverService;
+import unithon8th.somethingnew.service.user.UserService;
 
 @RequiredArgsConstructor
 @RequestMapping("/auth")
@@ -30,9 +27,12 @@ public class AuthController {
     //커밋용주석
 
     @PostMapping(value = "/kakao")
-    public ResponseEntity<UserResponseDto> giveToken(@RequestParam("token") String accessToken) {
+    public ResponseEntity<UserResponseDto> giveToken(@RequestParam("token") String accessToken, @RequestParam("fcmToken") String fcmToken) {
         System.out.println("accessToken = " + accessToken);
+        System.out.println("fcmToken = " + fcmToken);
+
         UserRequestDto userInfo = kakaoService.getUserInfo(accessToken);   //accessToken으로 유저정보 받아오기
+        userInfo.setFcmToken(fcmToken);
         if (userInfo.getSocialId() != null) {
             //kakaoId 기준으로 DB select하여 User 데이터가 없으면 Insert, 있으면 Update
             userService.insertOrUpdateUser(userInfo);
@@ -46,9 +46,12 @@ public class AuthController {
     }
 
     @PostMapping("/naver")
-    public ResponseEntity<UserResponseDto> getToken(@RequestParam("token") String accessToken){
+    public ResponseEntity<UserResponseDto> getToken(@RequestParam("token") String accessToken, @RequestParam("fcmToken") String fcmToken){
         System.out.println("accessToken = " + accessToken);
+        System.out.println("fcmToken = " + fcmToken);
+
         UserRequestDto userInfo = naverService.getUserInfo(accessToken);
+        userInfo.setFcmToken(fcmToken);
         if(userInfo.getSocialId() != null){
             userService.insertOrUpdateUser(userInfo);
 
