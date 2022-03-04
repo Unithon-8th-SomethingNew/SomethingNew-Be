@@ -46,7 +46,7 @@ public class AuthController {
     }
 
     @PostMapping("/naver")
-    public ResponseEntity<UserResponseDto> getToken(@RequestParam("token")String accessToken){
+    public ResponseEntity<UserResponseDto> getToken(@RequestParam("token") String accessToken){
         System.out.println("accessToken = " + accessToken);
         UserRequestDto userInfo = naverService.getUserInfo(accessToken);
         if(userInfo.getSocialId() != null){

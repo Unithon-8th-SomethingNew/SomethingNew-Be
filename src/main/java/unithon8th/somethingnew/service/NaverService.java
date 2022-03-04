@@ -1,6 +1,7 @@
 package unithon8th.somethingnew.service;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -18,22 +19,23 @@ import java.net.URL;
 @Log4j2//커밋용주석
 @RequiredArgsConstructor
 public class NaverService {
-    public UserRequestDto getUserInfo(String access_token){
+    public UserRequestDto getUserInfo(String accessToken){
         UserRequestDto userRequestDto = new UserRequestDto();
 
         try {
             URL url=new URL("https://openapi.naver.com/v1/nid/me");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            conn.setRequestProperty("Authorization", "Bearer "+access_token);
+            conn.setRequestProperty("Authorization", "Bearer " + accessToken);
             conn.setRequestMethod("POST");
 
             int responseCode = conn.getResponseCode();
-            log.info("200 is good={}",responseCode);
+            System.out.println("responseCode : " + responseCode);
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
-            String line="",result="";
+            String line="";
+            String result="";
 
             while ((line=bufferedReader.readLine())!=null){
                 result+=line;
@@ -43,15 +45,18 @@ public class NaverService {
             JsonParser jsonParser=new JsonParser();
             JsonElement element = jsonParser.parse(result);
 
-            String naverId = element.getAsJsonObject().get("id").getAsString();
-            String email = element.getAsJsonObject().get("email").getAsString();
-            String username = element.getAsJsonObject().get("name").getAsString();
-            String profileImage = element.getAsJsonObject().get("profile_image").getAsString();
+            JsonObject response = element.getAsJsonObject().get("response").getAsJsonObject();
 
+            String naverId = response.getAsJsonObject().get("id").getAsString();
+//            String imgUrl = response.getAsJsonObject().get("profile_image").getAsString();
+            String email = response.getAsJsonObject().get("email").getAsString();
+            String username = response.getAsJsonObject().get("name").getAsString();
+
+            System.out.println("username = " + username);
             userRequestDto.setSocialId(naverId);
             userRequestDto.setEmail(email);
             userRequestDto.setUsername(username);
-            userRequestDto.setImgURL(profileImage);
+//            userRequestDto.setImgURL(imgUrl);
             userRequestDto.setSocialType(SocialType.NAVER);
 
         } catch (IOException e) {

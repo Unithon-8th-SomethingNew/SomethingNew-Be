@@ -34,7 +34,7 @@ public class User {//커밋용주석
     @Column(name = "socialId",nullable = false)
     private String socialId;
 
-    @Column(name = "imgUrl",nullable = false)
+    @Column(name = "imgUrl")
     private String imgUrl;
 
 
