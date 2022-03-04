@@ -20,6 +20,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("UPDATE User u SET u.username = ?1, u.email = ?2, u.imgUrl = ?3 WHERE u.socialId = ?4 AND u.socialType = ?5")
     void updateUserBySocialIdAndSocialType(String username, String email, String imgURL, String socialId, SocialType socialType);
 
+    @Modifying(clearAutomatically = true)
+    @Query("UPDATE User u SET u.canCall = ?2 WHERE u.userId = ?1")
+    void updateUserCanCall(Long userId, boolean cancall);
+
     void delete(User user);
 
 }

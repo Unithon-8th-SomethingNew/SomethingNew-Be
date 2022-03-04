@@ -22,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/auth/**").permitAll() //로그인 화면 접근 가능
                 .antMatchers("/knock/**").permitAll()
+                .antMatchers("/user/**").permitAll()
                 .antMatchers("/").permitAll() //메인 화면 접근 가능
                 .anyRequest().hasRole("USER")
                 .and()
