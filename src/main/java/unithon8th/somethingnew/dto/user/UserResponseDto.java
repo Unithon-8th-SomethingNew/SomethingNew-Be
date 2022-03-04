@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor//커밋용주석
 public class UserResponseDto {
     private String username;
 }

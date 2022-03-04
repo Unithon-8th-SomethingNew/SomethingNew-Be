@@ -14,7 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 @Service
-@Log4j2
+@Log4j2//커밋용주석
 @RequiredArgsConstructor
 public class NaverService {
     public NaverRequestDto getUserInfo(String access_token){

@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
+    //커밋용주석
     public void insertOrUpdateUser(UserRequestDto userRequestDto) {
         String kakaoId = userRequestDto.getSocialId();
         //처음 로그인 하는 유저면 DB에 insert

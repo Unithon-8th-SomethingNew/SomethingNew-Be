@@ -9,7 +9,7 @@ import unithon8th.somethingnew.domain.user.User;
 
 @Data
 @ToString
-@NoArgsConstructor
+@NoArgsConstructor//커밋용주석
 public class NaverRequestDto {
     private String socialId;
     private String username;

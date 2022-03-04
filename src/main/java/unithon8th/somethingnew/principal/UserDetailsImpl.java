@@ -9,7 +9,7 @@ import unithon8th.somethingnew.domain.user.User;
 import java.util.Collection;
 import java.util.Collections;
 
-@Data
+@Data//커밋용주석
 public class UserDetailsImpl implements UserDetails {
 
     private User user;

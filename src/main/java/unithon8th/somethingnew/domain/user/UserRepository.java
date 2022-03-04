@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
-
+//커밋용주석
 @SuppressWarnings("unchecked")  //검증되지 않은 연산자 관련 경고를 무시
 public interface UserRepository extends JpaRepository<User, Long> {
 

@@ -34,7 +34,7 @@ public class UserRequestDto {
         this.socialId = kakaoId;
         this.imgURL = imgURL;
     }
-
+    //커밋용주석
     //UserRequestDto를 User Entity로 변환하여 return
     public User toEntity(){
         User user = new User(this.username, this.email, this.socialId, Role.USER, this.imgURL, this.refreshToken, SocialType.KAKAO);

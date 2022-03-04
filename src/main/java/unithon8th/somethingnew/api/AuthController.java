@@ -28,7 +28,7 @@ public class AuthController {
     private final NaverService naverService;
 
     private final UserService userService;
-
+    //커밋용주석
 
     @PostMapping(value = "/kakao")
     public ResponseEntity<UserResponseDto> giveToken(@RequestParam("token") String accessToken) {

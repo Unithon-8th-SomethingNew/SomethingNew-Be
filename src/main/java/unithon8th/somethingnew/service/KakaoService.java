@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+//커밋용주석
 @RequiredArgsConstructor
 @Service
 public class KakaoService {
