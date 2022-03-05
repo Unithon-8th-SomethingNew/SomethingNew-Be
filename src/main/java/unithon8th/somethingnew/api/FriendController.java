@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import unithon8th.somethingnew.domain.friend.Friend;
 import unithon8th.somethingnew.dto.friend.FriendLocationResponseDto;
-import unithon8th.somethingnew.dto.friend.UserFriendResponseDto;
+import unithon8th.somethingnew.dto.friend.FriendResponseDto;
 import unithon8th.somethingnew.service.FriendService;
 
 import java.util.List;
@@ -28,8 +28,8 @@ public class FriendController {
     }
 
     @GetMapping("/find")
-    public ResponseEntity<List<UserFriendResponseDto>> findFriends(@RequestParam("userId") Long userId){
-        List<UserFriendResponseDto> userList = friendService.getUserFriendResponseDtos(userId);
+    public ResponseEntity<List<FriendResponseDto>> findFriends(@RequestParam("userId") Long userId){
+        List<FriendResponseDto> userList = friendService.getUserFriendResponseDtos(userId);
         return ResponseEntity.ok(userList);
     }
 
