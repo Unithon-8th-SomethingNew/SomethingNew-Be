@@ -32,13 +32,12 @@ public class AuthController {
     //커밋용주석
 
     @PostMapping(value = "/kakao")
-    public ResponseEntity<UserResponseDto> giveToken(@RequestParam("token") String accessToken, @RequestParam("fcmToken") String fcmToken,@RequestParam("street")String street) {
+    public ResponseEntity<UserResponseDto> giveToken(@RequestParam("token") String accessToken, @RequestParam("fcmToken") String fcmToken, @RequestParam("street") String street) {
         System.out.println("accessToken = " + accessToken);
         System.out.println("fcmToken = " + fcmToken);
 
         UserRequestDto userInfo = kakaoService.getUserInfo(accessToken);   //accessToken으로 유저정보 받아오기
         HashMap<String, String> userLocation = naverMapService.getUserLocation(street);
-        log.info("user-Location={}",userLocation);
         userInfo.setStreet(street);
         userInfo.setX(userLocation.get("x"));
         userInfo.setY(userLocation.get("y"));
