@@ -2,8 +2,12 @@ package unithon8th.somethingnew.domain.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import unithon8th.somethingnew.domain.friend.Friend;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 
 @Getter
@@ -40,8 +44,18 @@ public class User {//커밋용주석
     @Column(name = "fcmToken")
     private String fcmToken;
 
+    @Column(name = "canCall")
+    private boolean canCall = false;
 
-    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken) {
+    @Column(name = "street")
+    private String street;
+
+    private String x;
+
+    private String y;
+
+
+    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken,String street,String x,String y) {
         this.username = username;
         this.email = email;
         this.socialId = socialId;
@@ -49,15 +63,14 @@ public class User {//커밋용주석
         this.imgUrl = imgUrl;
         this.socialType = socialType;
         this.fcmToken = fcmToken;
+        this.x=x;
+        this.y=y;
+        this.street=street;
     }
 
     public void toUpdateUser(String username,String email,String imgUrl){
         this.username=username;
         this.email=email;
         this.imgUrl=imgUrl;
-    }
-
-    public void inserFcmToken(String fcmToken){
-        this.fcmToken=fcmToken;
     }
 }
