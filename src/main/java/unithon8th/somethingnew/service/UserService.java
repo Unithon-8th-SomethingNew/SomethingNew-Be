@@ -42,7 +42,7 @@ public class UserService {
     }
 
     public void updateUserBySocial(UserRequestDto userInfo) {
-        userRepository.updateUserBySocialIdAndSocialType(userInfo.getUsername(), userInfo.getEmail(), userInfo.getImgURL(), userInfo.getSocialId(), userInfo.getSocialType());
+        userRepository.updateUserBySocialIdAndSocialType(userInfo.getUsername(), userInfo.getEmail(), userInfo.getImgURL(), userInfo.getStreet(), userInfo.getX(), userInfo.getY(), userInfo.getSocialId(), userInfo.getSocialType());
     }
 
     public void updateUserCanCall(UserCallableRequestDto userCallableRequestDto) {
