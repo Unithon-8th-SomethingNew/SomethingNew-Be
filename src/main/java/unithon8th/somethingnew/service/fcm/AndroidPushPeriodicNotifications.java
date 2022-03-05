@@ -8,6 +8,8 @@ import unithon8th.somethingnew.domain.user.User;
 import unithon8th.somethingnew.dto.nitification.NotificationRequestDto;
 import unithon8th.somethingnew.service.UserService;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -26,9 +28,18 @@ public class AndroidPushPeriodicNotifications {
         body.put("registration_ids", array);
 
         JSONObject notification = new JSONObject();
-        String pushMessage = optionalFromUser.get().getUsername() + "-" + optionalFromUser.get().getUserId() + "-" + optionalFromUser.get().getImgUrl();
-        notification.put("title", "누군가 노크했어요!");
-        notification.put("body", pushMessage);
+
+        try {
+            String pushMessage = optionalFromUser.get().getUsername() + "-" + optionalFromUser.get().getUserId() + "-" + optionalFromUser.get().getImgUrl();
+            String titleMessage = "누군가 노크했어요!";
+
+            pushMessage = URLEncoder.encode(pushMessage  ,"UTF-8");
+            titleMessage = URLEncoder.encode(titleMessage, "UTF-8");
+            notification.put("title", titleMessage);
+            notification.put("body", pushMessage);
+        }catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         body.put("notification", notification);
 
