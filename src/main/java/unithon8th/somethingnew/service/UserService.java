@@ -6,6 +6,7 @@ import unithon8th.somethingnew.domain.user.SocialType;
 import unithon8th.somethingnew.domain.user.User;
 import unithon8th.somethingnew.domain.user.UserRepository;
 import unithon8th.somethingnew.dto.user.UserCallableRequestDto;
+import unithon8th.somethingnew.dto.user.UserLocationResponseDto;
 import unithon8th.somethingnew.dto.user.UserRequestDto;
 
 import javax.transaction.Transactional;
@@ -46,6 +47,16 @@ public class UserService {
 
     public void updateUserCanCall(UserCallableRequestDto userCallableRequestDto) {
         userRepository.updateUserCanCall(userCallableRequestDto.getUserId(), userCallableRequestDto.isCanCall());
+    }
+
+    public UserLocationResponseDto findUserLocation(Long userId){
+        Optional<User> optionalUser = userRepository.findByUserId(userId);
+        if(optionalUser.isPresent() && optionalUser.get().isCanCall() == true){
+            User user = optionalUser.get();
+            UserLocationResponseDto locationResponseDto = new UserLocationResponseDto(user.getUserId(), user.getUsername(), user.getImgUrl(), Double.parseDouble(user.getX()), Double.parseDouble(user.getY()), user.getFcmToken());
+            return locationResponseDto;
+        } else
+            return null;
     }
 
 }
