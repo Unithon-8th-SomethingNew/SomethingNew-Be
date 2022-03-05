@@ -1,4 +1,4 @@
-package unithon8th.somethingnew.dto.user;
+package unithon8th.somethingnew.dto.user.request;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

@@ -7,7 +7,7 @@ import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import unithon8th.somethingnew.domain.user.SocialType;
-import unithon8th.somethingnew.dto.user.UserRequestDto;
+import unithon8th.somethingnew.dto.user.request.UserRequestDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -2,13 +2,9 @@ package unithon8th.somethingnew.service.map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-import unithon8th.somethingnew.dto.user.UserRequestDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;

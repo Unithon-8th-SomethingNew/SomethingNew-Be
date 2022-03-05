@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import unithon8th.somethingnew.domain.user.SocialType;
-import unithon8th.somethingnew.dto.user.UserRequestDto;
+import unithon8th.somethingnew.dto.user.request.UserRequestDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;

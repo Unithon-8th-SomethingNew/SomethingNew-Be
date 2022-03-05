@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import unithon8th.somethingnew.domain.user.User;
-import unithon8th.somethingnew.dto.user.UserRequestDto;
-import unithon8th.somethingnew.dto.user.UserResponseDto;
+import unithon8th.somethingnew.dto.user.request.UserRequestDto;
+import unithon8th.somethingnew.dto.user.response.UserResponseDto;
+import unithon8th.somethingnew.service.UserService;
 import unithon8th.somethingnew.service.map.NaverMapService;
 import unithon8th.somethingnew.service.social.KakaoService;
-import unithon8th.somethingnew.service.UserService;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -40,17 +40,12 @@ public class AuthController {
 
         UserRequestDto userInfo = kakaoService.getUserInfo(accessToken);   //accessToken으로 유저정보 받아오기
         HashMap<String, String> userLocation = naverMapService.getUserLocation(street);
-        userInfo.setStreet(street);
-        userInfo.setX(userLocation.get("x"));
-        userInfo.setY(userLocation.get("y"));
-        userInfo.setToTime(LocalTime.parse("00:00:00",DateTimeFormatter.ISO_LOCAL_TIME));
-        userInfo.setFromTime(LocalTime.parse("24:00:00",DateTimeFormatter.ISO_LOCAL_TIME));
-        userInfo.setFcmToken(fcmToken);
+        setUserInfo(fcmToken, street, userInfo, userLocation);
+
         if (userInfo.getSocialId() != null) {
             //kakaoId 기준으로 DB select하여 User 데이터가 없으면 Insert, 있으면 Update
             userService.insertOrUpdateUser(userInfo);
             Optional<User> optionalUser = userService.findUserBySocial(userInfo.getSocialId(), userInfo.getSocialType());
-            log.info("user FromTime={}",optionalUser.get().getFromTime());
             //UserResponseDto에 userId 추가
             UserResponseDto userResponseDto = new UserResponseDto(optionalUser.get().getUserId(), userInfo.getUsername(), userInfo.getImgURL());
 
@@ -58,6 +53,15 @@ public class AuthController {
         } else {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    private void setUserInfo(String fcmToken, String street, UserRequestDto userInfo, HashMap<String, String> userLocation) {
+        userInfo.setStreet(street);
+        userInfo.setX(userLocation.get("x"));
+        userInfo.setY(userLocation.get("y"));
+        userInfo.setToTime(LocalTime.parse("00:00:00",DateTimeFormatter.ISO_LOCAL_TIME));
+        userInfo.setFromTime(LocalTime.parse("24:00:00",DateTimeFormatter.ISO_LOCAL_TIME));
+        userInfo.setFcmToken(fcmToken);
     }
 
     /*@PostMapping("/naver")

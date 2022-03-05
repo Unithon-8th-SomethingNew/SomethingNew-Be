@@ -1,4 +1,4 @@
-package unithon8th.somethingnew.dto.user;
+package unithon8th.somethingnew.dto.user.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

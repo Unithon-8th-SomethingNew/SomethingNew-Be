@@ -5,7 +5,13 @@ import org.springframework.stereotype.Service;
 import unithon8th.somethingnew.domain.user.SocialType;
 import unithon8th.somethingnew.domain.user.User;
 import unithon8th.somethingnew.domain.user.UserRepository;
-import unithon8th.somethingnew.dto.user.*;
+import unithon8th.somethingnew.dto.user.request.UserCallStreetRequestDto;
+import unithon8th.somethingnew.dto.user.request.UserCallTimeRequestDto;
+import unithon8th.somethingnew.dto.user.request.UserCallableRequestDto;
+import unithon8th.somethingnew.dto.user.request.UserRequestDto;
+import unithon8th.somethingnew.dto.user.response.UserCallStreetResponseDto;
+import unithon8th.somethingnew.dto.user.response.UserCallTimeResponseDto;
+import unithon8th.somethingnew.dto.user.response.UserLocationResponseDto;
 
 import javax.transaction.Transactional;
 import java.util.Optional;

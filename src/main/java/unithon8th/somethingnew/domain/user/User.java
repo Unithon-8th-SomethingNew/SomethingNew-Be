@@ -45,7 +45,7 @@ public class User {//커밋용주석
     private String fcmToken;
 
     @Column(name = "canCall")
-    private boolean canCall = false;
+    private boolean canCall = true;
 
     @Column(name = "street")
     private String street;
