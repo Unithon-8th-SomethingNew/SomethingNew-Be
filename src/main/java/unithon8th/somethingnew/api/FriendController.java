@@ -50,6 +50,7 @@ public class FriendController {
                     .canCall(user.isCanCall())
                     .username(user.getUsername())
                     .userId(id)
+                    .street(user.getStreet())
                     .build();
             userList.add(userDto);
         }
