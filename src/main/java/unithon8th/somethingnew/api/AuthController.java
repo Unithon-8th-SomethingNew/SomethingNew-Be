@@ -57,7 +57,7 @@ public class AuthController {
     }
 
     @PostMapping("/naver")
-    public ResponseEntity<UserResponseDto> getToken(@RequestParam("token") String accessToken, @RequestParam("fcmToken") String fcmToken, @RequestParam("street") String street){
+    public ResponseEntity<UserResponseDto> getToken(@RequestParam("token") String accessToken, @RequestParam("fcmToken") String fcmToken, @RequestParam("street") String street) {
         System.out.println("accessToken = " + accessToken);
         System.out.println("fcmToken = " + fcmToken);
 
@@ -65,14 +65,14 @@ public class AuthController {
         HashMap<String, String> userLocation = naverMapService.getUserLocation(street);
         setUserInfo(fcmToken, street, userInfo, userLocation);
 
-        if(userInfo.getSocialId() != null){
+        if (userInfo.getSocialId() != null) {
             userService.insertOrUpdateUser(userInfo);
             Optional<User> optionalUser = userService.findUserBySocial(userInfo.getSocialId(), userInfo.getSocialType());
             UserResponseDto userResponseDto = new UserResponseDto(optionalUser.get().getUserId(), userInfo.getUsername(), userInfo.getImgURL());
 
             return ResponseEntity.ok(userResponseDto);
-        }else {
-            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -80,8 +80,8 @@ public class AuthController {
         userInfo.setStreet(street);
         userInfo.setX(userLocation.get("x"));
         userInfo.setY(userLocation.get("y"));
-        userInfo.setToTime(LocalTime.parse("00:00:00",DateTimeFormatter.ISO_LOCAL_TIME));
-        userInfo.setFromTime(LocalTime.parse("23:59:59",DateTimeFormatter.ISO_LOCAL_TIME));
+        userInfo.setToTime(LocalTime.parse("00:00:00", DateTimeFormatter.ISO_LOCAL_TIME));
+        userInfo.setFromTime(LocalTime.parse("23:59:59", DateTimeFormatter.ISO_LOCAL_TIME));
         userInfo.setFcmToken(fcmToken);
     }
 }

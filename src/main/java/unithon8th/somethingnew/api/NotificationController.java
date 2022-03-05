@@ -23,10 +23,8 @@ import java.util.concurrent.ExecutionException;
 @RestController
 public class NotificationController {
     private final UserService userService;
+    private final AndroidPushNotificationsService androidPushNotificationsService;
     Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
-    AndroidPushNotificationsService androidPushNotificationsService;
 
     @PostMapping(value = "/knock")
     public @ResponseBody ResponseEntity<String> send(@RequestBody NotificationRequestDto notificationRequestDto) throws JSONException, InterruptedException  {
