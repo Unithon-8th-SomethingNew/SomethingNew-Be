@@ -47,8 +47,15 @@ public class User {//커밋용주석
     @Column(name = "canCall")
     private boolean canCall = false;
 
+    @Column(name = "street")
+    private String street;
 
-    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken) {
+    private String x;
+
+    private String y;
+
+
+    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken,String street,String x,String y) {
         this.username = username;
         this.email = email;
         this.socialId = socialId;
@@ -56,6 +63,9 @@ public class User {//커밋용주석
         this.imgUrl = imgUrl;
         this.socialType = socialType;
         this.fcmToken = fcmToken;
+        this.x=x;
+        this.y=y;
+        this.street=street;
     }
 
     public void toUpdateUser(String username,String email,String imgUrl){
