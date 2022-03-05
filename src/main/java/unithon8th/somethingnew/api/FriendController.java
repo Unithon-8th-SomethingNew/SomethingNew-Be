@@ -18,14 +18,12 @@ import java.util.List;
 @RequestMapping("/friend")
 @RestController
 public class FriendController {
-    private final FriendRepository friendRepository;
     private final FriendService friendService;
-    private final UserService userService;
 
     @PostMapping("/request")
-    public ResponseEntity friendRequest(@RequestParam("toUserId") Long toUserId, @RequestParam("fromUserId") Long fromUserId){
-        boolean check = friendService.saveFriend(toUserId, fromUserId);
-        if(check == true)
+    public ResponseEntity friendRequest(@RequestParam("toUserEmail") String toUserEmail, @RequestParam("fromUserId") Long fromUserId){
+        Friend check = friendService.saveFriend(toUserEmail, fromUserId);
+        if(check != null)
             return new ResponseEntity(HttpStatus.OK);
         else
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -33,27 +31,9 @@ public class FriendController {
 
     @GetMapping("/find")
     public ResponseEntity<List<UserFriendResponseDto>> findFriends(@RequestParam("userId") Long userId){
-        List<Friend> friendList = friendRepository.findByFromUserIdOrToUserId(userId, userId);
-        List<Long> friendsIdList= new ArrayList<>();
-        for (Friend friend : friendList) {
-            if(friend.getFromUserId() == userId)
-                friendsIdList.add(friend.getToUserId());
-            else
-                friendsIdList.add(friend.getFromUserId());
-        }
-        List<UserFriendResponseDto> userList = new ArrayList<>();
-        for (Long id : friendsIdList) {
-            User user = userService.findUserByUserId(id).get();
-            UserFriendResponseDto userDto = UserFriendResponseDto.builder()
-                    .email(user.getEmail())
-                    .imgUrl(user.getImgUrl())
-                    .canCall(user.isCanCall())
-                    .username(user.getUsername())
-                    .userId(id)
-                    .street(user.getStreet())
-                    .build();
-            userList.add(userDto);
-        }
+        List<UserFriendResponseDto> userList = friendService.getUserFriendResponseDtos(userId);
         return ResponseEntity.ok(userList);
     }
+
+
 }
