@@ -4,16 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import unithon8th.somethingnew.domain.user.User;
-import unithon8th.somethingnew.domain.user.UserRepository;
 import unithon8th.somethingnew.dto.nitification.NotificationRequestDto;
-import unithon8th.somethingnew.service.user.UserService;
+import unithon8th.somethingnew.service.UserService;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor

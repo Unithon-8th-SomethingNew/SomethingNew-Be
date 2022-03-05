@@ -1,4 +1,4 @@
-package unithon8th.somethingnew.service.user;
+package unithon8th.somethingnew.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

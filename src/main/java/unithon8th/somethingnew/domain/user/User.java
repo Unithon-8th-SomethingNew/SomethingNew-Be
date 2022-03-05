@@ -2,8 +2,12 @@ package unithon8th.somethingnew.domain.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import unithon8th.somethingnew.domain.friend.Friend;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 
 @Getter
@@ -42,6 +46,8 @@ public class User {//커밋용주석
 
     @Column(name = "canCall")
     private boolean canCall = false;
+
+
 
 
     public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken) {

@@ -23,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth/**").permitAll() //로그인 화면 접근 가능
                 .antMatchers("/knock/**").permitAll()
                 .antMatchers("/user/**").permitAll()
+                .antMatchers("/friend/**").permitAll()
                 .antMatchers("/").permitAll() //메인 화면 접근 가능
                 .anyRequest().hasRole("USER")
                 .and()

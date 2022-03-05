@@ -13,7 +13,7 @@ import unithon8th.somethingnew.dto.user.UserRequestDto;
 import unithon8th.somethingnew.dto.user.UserResponseDto;
 import unithon8th.somethingnew.service.social.KakaoService;
 import unithon8th.somethingnew.service.social.NaverService;
-import unithon8th.somethingnew.service.user.UserService;
+import unithon8th.somethingnew.service.UserService;
 
 import java.util.Optional;
 
@@ -40,6 +40,7 @@ public class AuthController {
             //kakaoId 기준으로 DB select하여 User 데이터가 없으면 Insert, 있으면 Update
             userService.insertOrUpdateUser(userInfo);
             Optional<User> optionalUser = userService.findUserBySocial(userInfo.getSocialId(), userInfo.getSocialType());
+
             //UserResponseDto에 userId 추가
             UserResponseDto userResponseDto = new UserResponseDto(optionalUser.get().getUserId(), userInfo.getUsername(), userInfo.getImgURL());
 

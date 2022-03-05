@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import unithon8th.somethingnew.dto.user.UserCallableRequestDto;
-import unithon8th.somethingnew.service.user.UserService;
+import unithon8th.somethingnew.service.UserService;
 
 @RequiredArgsConstructor
 @RequestMapping("/user")
