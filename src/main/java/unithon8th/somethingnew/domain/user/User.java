@@ -24,7 +24,7 @@ public class User {//커밋용주석
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "email", nullable = true)
+    @Column(name = "email", nullable = true, unique = true)
     private String email;
 
     @Column(name = "role",nullable = false)

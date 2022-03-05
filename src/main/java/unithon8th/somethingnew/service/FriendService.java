@@ -22,6 +22,9 @@ public class FriendService {
 
     public Friend saveFriend(String toUserEmail, Long fromUserId) {
         Optional<User> optionalUser = userRepository.findByEmail(toUserEmail);
+        Optional<User> findFromUser = userService.findUserByUserId(fromUserId);
+        //본인에게 친구추가 방지
+        if(findFromUser.get().getEmail() == toUserEmail) return null;
 
         if (optionalUser.isPresent()) {
             Long toUserId = optionalUser.get().getUserId();
