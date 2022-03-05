@@ -27,8 +27,9 @@ public class AndroidPushPeriodicNotifications {
             body.put("registration_ids", array);
 
             JSONObject notification = new JSONObject();
-            notification.put("title", optionalFromUser.get().getUsername() + "-" + optionalFromUser.get().getUserId() + "-" + optionalFromUser.get().getImgUrl());
-            notification.put("body", "문을 열어 손님을 맞아주세요");
+            String pushMessage = optionalFromUser.get().getUsername() + "-" + optionalFromUser.get().getUserId() + "-" + optionalFromUser.get().getImgUrl();
+            notification.put("title", pushMessage);
+            notification.put("body","누군가 노크했어요!");
 
             body.put("notification", notification);
 
