@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service;
 import unithon8th.somethingnew.domain.user.SocialType;
 import unithon8th.somethingnew.domain.user.User;
 import unithon8th.somethingnew.domain.user.UserRepository;
-import unithon8th.somethingnew.dto.user.UserCallableRequestDto;
-import unithon8th.somethingnew.dto.user.UserLocationResponseDto;
-import unithon8th.somethingnew.dto.user.UserRequestDto;
+import unithon8th.somethingnew.dto.user.*;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -42,7 +40,7 @@ public class UserService {
     }
 
     public void updateUserBySocial(UserRequestDto userInfo) {
-        userRepository.updateUserBySocialIdAndSocialType(userInfo.getUsername(), userInfo.getEmail(), userInfo.getImgURL(), userInfo.getStreet(), userInfo.getX(), userInfo.getY(), userInfo.getFcmToken(), userInfo.getSocialId(), userInfo.getSocialType());
+        userRepository.updateUserBySocialIdAndSocialType(userInfo.getUsername(), userInfo.getEmail(), userInfo.getImgURL(), userInfo.getStreet(), userInfo.getX(), userInfo.getY(), userInfo.getSocialId(), userInfo.getSocialType());
     }
 
     public void updateUserCanCall(UserCallableRequestDto userCallableRequestDto) {
@@ -59,4 +57,15 @@ public class UserService {
             return null;
     }
 
+    public UserCallStreetResponseDto updateUserCallStreet(UserCallStreetRequestDto userCallStreetRequestDto) {
+        userRepository.updateUserCallStreet(userCallStreetRequestDto.getUserId(),userCallStreetRequestDto.getStreet());
+        UserCallStreetResponseDto userCallStreetResponseDto=new UserCallStreetResponseDto(userCallStreetRequestDto.getUserId(),userCallStreetRequestDto.getStreet());
+        return userCallStreetResponseDto;
+    }
+
+    public UserCallTimeResponseDto updateUserCallTime(UserCallTimeRequestDto userCallTimeRequestDto) {
+        userRepository.updateUserCallTime(userCallTimeRequestDto.getUserId(),userCallTimeRequestDto.getToTime(),userCallTimeRequestDto.getFromTime());
+        UserCallTimeResponseDto userCallTimeResponseDto = new UserCallTimeResponseDto(userCallTimeRequestDto.getUserId(), userCallTimeRequestDto.getToTime(), userCallTimeRequestDto.getFromTime());
+        return userCallTimeResponseDto;
+    }
 }

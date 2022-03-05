@@ -2,12 +2,12 @@ package unithon8th.somethingnew.domain.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import unithon8th.somethingnew.domain.friend.Friend;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.time.LocalTime;
+
 
 
 @Getter
@@ -54,8 +54,14 @@ public class User {//커밋용주석
 
     private String y;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime toTime;
 
-    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken,String street,String x,String y) {
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime fromTime;
+
+
+    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken,String street,String x,String y,LocalTime toTime,LocalTime fromTime) {
         this.username = username;
         this.email = email;
         this.socialId = socialId;
@@ -66,6 +72,8 @@ public class User {//커밋용주석
         this.x=x;
         this.y=y;
         this.street=street;
+        this.toTime=toTime;
+        this.fromTime=fromTime;
     }
 
     public void toUpdateUser(String username,String email,String imgUrl){
