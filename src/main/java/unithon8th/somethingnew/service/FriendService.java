@@ -6,7 +6,8 @@ import unithon8th.somethingnew.domain.friend.Friend;
 import unithon8th.somethingnew.domain.friend.FriendRepository;
 import unithon8th.somethingnew.domain.user.User;
 import unithon8th.somethingnew.domain.user.UserRepository;
-import unithon8th.somethingnew.dto.user.UserFriendResponseDto;
+import unithon8th.somethingnew.dto.friend.FriendLocationResponseDto;
+import unithon8th.somethingnew.dto.friend.UserFriendResponseDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,33 @@ public class FriendService {
                     .username(user.getUsername())
                     .userId(id)
                     .street(user.getStreet())
+                    .build();
+            userList.add(userDto);
+        }
+        return userList;
+    }
+
+    public List<FriendLocationResponseDto> getFriendLocation(Long userId) {
+        List<Friend> friendList = friendRepository.findByFromUserIdOrToUserId(userId, userId);
+        List<Long> friendsIdList= new ArrayList<>();
+        for (Friend friend : friendList) {
+            if(friend.getFromUserId() == userId)
+                friendsIdList.add(friend.getToUserId());
+            else
+                friendsIdList.add(friend.getFromUserId());
+        }
+        List<FriendLocationResponseDto> userList = new ArrayList<>();
+        for (Long id : friendsIdList) {
+            User user = userService.findUserByUserId(id).get();
+            FriendLocationResponseDto userDto = FriendLocationResponseDto.builder()
+                    .email(user.getEmail())
+                    .imgUrl(user.getImgUrl())
+                    .canCall(user.isCanCall())
+                    .username(user.getUsername())
+                    .userId(id)
+                    .street(user.getStreet())
+                    .x(user.getX())
+                    .y(user.getY())
                     .build();
             userList.add(userDto);
         }
