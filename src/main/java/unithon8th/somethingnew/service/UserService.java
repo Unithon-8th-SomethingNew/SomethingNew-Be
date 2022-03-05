@@ -12,6 +12,7 @@ import unithon8th.somethingnew.dto.user.request.UserRequestDto;
 import unithon8th.somethingnew.dto.user.response.UserCallStreetResponseDto;
 import unithon8th.somethingnew.dto.user.response.UserCallTimeResponseDto;
 import unithon8th.somethingnew.dto.user.response.UserLocationResponseDto;
+import unithon8th.somethingnew.dto.user.response.UserSettingResponseDto;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -73,5 +74,20 @@ public class UserService {
         userRepository.updateUserCallTime(userCallTimeRequestDto.getUserId(),userCallTimeRequestDto.getToTime(),userCallTimeRequestDto.getFromTime());
         UserCallTimeResponseDto userCallTimeResponseDto = new UserCallTimeResponseDto(userCallTimeRequestDto.getUserId(), userCallTimeRequestDto.getToTime(), userCallTimeRequestDto.getFromTime());
         return userCallTimeResponseDto;
+    }
+
+    public UserSettingResponseDto findUserSetting(Long userId){
+        Optional<User> optionalUser = userRepository.findByUserId(userId);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            UserSettingResponseDto responseDto = UserSettingResponseDto.builder()
+                    .userId(userId)
+                    .street(user.getStreet())
+                    .canCall(user.isCanCall())
+                    .toTime(user.getToTime())
+                    .fromTime(user.getFromTime())
+                    .build();
+            return responseDto;
+        } else return null;
     }
 }
