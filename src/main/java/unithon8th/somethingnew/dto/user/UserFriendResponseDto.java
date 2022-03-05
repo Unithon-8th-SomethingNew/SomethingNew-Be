@@ -10,13 +10,15 @@ public class UserFriendResponseDto {
     private String email;
     private String imgUrl;
     private boolean canCall;
+    private String street;
 
     @Builder
-    public UserFriendResponseDto(Long userId, String username, String email, String imgUrl, boolean canCall) {
+    public UserFriendResponseDto(Long userId, String username, String email, String imgUrl, boolean canCall, String street) {
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.imgUrl = imgUrl;
         this.canCall = canCall;
+        this.street = street;
     }
 }
