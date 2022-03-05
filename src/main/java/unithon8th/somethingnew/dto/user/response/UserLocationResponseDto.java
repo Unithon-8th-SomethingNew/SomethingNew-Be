@@ -1,12 +1,9 @@
 package unithon8th.somethingnew.dto.user.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-@Data
-@ToString
+@Getter
+@Setter
 @AllArgsConstructor
 public class UserLocationResponseDto {
     private Long uid;

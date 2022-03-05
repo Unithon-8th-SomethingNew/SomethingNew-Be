@@ -1,16 +1,18 @@
 package unithon8th.somethingnew.dto.user.request;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalTime;
 
-@Data
+@Getter
+@Setter
 public class UserCallTimeRequestDto {
 
     private Long userId;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    @DateTimeFormat(pattern = "HH:mm:ss")
     private LocalTime toTime;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    @DateTimeFormat(pattern = "HH:mm:ss")
     private LocalTime fromTime;
 }

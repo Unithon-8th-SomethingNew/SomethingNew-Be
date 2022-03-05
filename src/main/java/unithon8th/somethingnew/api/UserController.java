@@ -29,14 +29,14 @@ public class UserController {
     @PutMapping("/street")
     public ResponseEntity<UserCallStreetResponseDto> changeStreet(@RequestBody UserCallStreetRequestDto userCallStreetRequestDto){
         UserCallStreetResponseDto userCallStreetResponseDto = userService.updateUserCallStreet(userCallStreetRequestDto);
-        return new ResponseEntity(userCallStreetResponseDto,HttpStatus.OK);
+        return new ResponseEntity(userCallStreetResponseDto, HttpStatus.OK);
     }
 
     //time 값 변경 api
     @PutMapping("/time")
     public ResponseEntity<UserCallTimeResponseDto> changeTime(@RequestBody UserCallTimeRequestDto userCallTimeRequestDto){
         UserCallTimeResponseDto userCallTimeResponseDto = userService.updateUserCallTime(userCallTimeRequestDto);
-        return new ResponseEntity(userCallTimeResponseDto,HttpStatus.OK);
+        return new ResponseEntity(userCallTimeResponseDto, HttpStatus.OK);
     }
 
 }

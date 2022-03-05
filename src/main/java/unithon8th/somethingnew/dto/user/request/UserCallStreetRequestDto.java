@@ -1,8 +1,10 @@
 package unithon8th.somethingnew.dto.user.request;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class UserCallStreetRequestDto {
     private Long userId;
     private String street;

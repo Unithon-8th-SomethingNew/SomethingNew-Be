@@ -28,7 +28,7 @@ public class AndroidPushPeriodicNotifications {
         JSONObject notification = new JSONObject();
         String pushMessage = optionalFromUser.get().getUsername() + "-" + optionalFromUser.get().getUserId() + "-" + optionalFromUser.get().getImgUrl();
         notification.put("title", "누군가 노크했어요!");
-        notification.put("body", pushMessage);
+        notification.put("body", "pushMessage");
 
         body.put("notification", notification);
 

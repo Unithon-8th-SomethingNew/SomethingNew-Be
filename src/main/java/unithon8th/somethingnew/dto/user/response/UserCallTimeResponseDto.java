@@ -1,13 +1,11 @@
 package unithon8th.somethingnew.dto.user.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalTime;
 
-@Data
-@ToString
+@Getter
+@Setter
 @AllArgsConstructor
 public class UserCallTimeResponseDto {
     private Long userId;

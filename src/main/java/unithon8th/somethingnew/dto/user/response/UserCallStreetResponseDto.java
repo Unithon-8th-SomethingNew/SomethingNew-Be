@@ -1,11 +1,9 @@
 package unithon8th.somethingnew.dto.user.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
-@Data
-@ToString
+@Setter
+@Getter
 @AllArgsConstructor
 public class UserCallStreetResponseDto {
     private Long userId;

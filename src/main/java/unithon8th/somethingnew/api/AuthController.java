@@ -60,7 +60,7 @@ public class AuthController {
         userInfo.setX(userLocation.get("x"));
         userInfo.setY(userLocation.get("y"));
         userInfo.setToTime(LocalTime.parse("00:00:00",DateTimeFormatter.ISO_LOCAL_TIME));
-        userInfo.setFromTime(LocalTime.parse("24:00:00",DateTimeFormatter.ISO_LOCAL_TIME));
+        userInfo.setFromTime(LocalTime.parse("23:59:59",DateTimeFormatter.ISO_LOCAL_TIME));
         userInfo.setFcmToken(fcmToken);
     }
 
