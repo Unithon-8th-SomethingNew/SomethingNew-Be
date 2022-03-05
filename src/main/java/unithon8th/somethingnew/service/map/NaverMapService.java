@@ -8,12 +8,15 @@ import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import unithon8th.somethingnew.dto.user.UserRequestDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.*;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -21,7 +24,10 @@ import java.util.Map;
 @Log4j2
 public class NaverMapService {
 
-    public String getUserLocation(String street){
+    public HashMap<String,String> getUserLocation(String street){
+
+
+        HashMap<String, String> XYMap = new HashMap<String, String>();
         String privateKey="78c13b3cb1635c3eaff2a2f6bc2d9f54";
         String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json";
         String jsonString = null;
@@ -44,10 +50,20 @@ public class NaverMapService {
                 docJson.append(line);
             }
             jsonString = docJson.toString();
-            JsonParser parser=new JsonParser();
-            JsonElement element = parser.parse(docJson.toString());
-            log.info("This is Element={}",element);
             rd.close();
+            ObjectMapper mapper =new ObjectMapper();
+            TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {};
+            Map<String,Object>jsonMap = mapper.readValue(jsonString, typeRef);
+
+            @SuppressWarnings("unchecked")
+            List<Map<String,String>>docList = (List<Map<String, String>>) jsonMap.get("documents");
+            Map<String,String> adList =(Map<String, String>)docList.get(0);
+            XYMap.put("x",adList.get("x"));
+            XYMap.put("y",adList.get("y"));
+            String x = XYMap.get("x");
+            String y = XYMap.get("y");
+
+
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -56,6 +72,7 @@ public class NaverMapService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonString;
+        return XYMap;
     }
+
 }

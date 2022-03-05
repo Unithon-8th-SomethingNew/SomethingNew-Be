@@ -13,6 +13,8 @@ import unithon8th.somethingnew.service.social.KakaoService;
 import unithon8th.somethingnew.service.social.NaverService;
 import unithon8th.somethingnew.service.user.UserService;
 
+import java.util.HashMap;
+
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 @RestController
@@ -33,9 +35,12 @@ public class AuthController {
         System.out.println("fcmToken = " + fcmToken);
 
         UserRequestDto userInfo = kakaoService.getUserInfo(accessToken);   //accessToken으로 유저정보 받아오기
-        naverMapService.getUserLocation(street);
+        HashMap<String, String> userLocation = naverMapService.getUserLocation(street);
+        log.info("user-Location={}",userLocation);
+        userInfo.setStreet(street);
+        userInfo.setX(userLocation.get("x"));
+        userInfo.setY(userLocation.get("y"));
         userInfo.setFcmToken(userInfo.getFcmToken());
-        userInfo.setStreet(street)  ;
         if (userInfo.getSocialId() != null) {
             //kakaoId 기준으로 DB select하여 User 데이터가 없으면 Insert, 있으면 Update
             userService.insertOrUpdateUser(userInfo);

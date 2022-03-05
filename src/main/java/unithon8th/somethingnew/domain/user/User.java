@@ -40,24 +40,24 @@ public class User {//커밋용주석
     @Column(name = "fcmToken")
     private String fcmToken;
 
+    @Column(name = "street")
+    private String street;
 
-    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken) {
+    private String x;
+
+    private String y;
+
+    public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken,String street,String x,String y) {
         this.username = username;
         this.email = email;
+        this.street=street;
         this.socialId = socialId;
         this.role = role;
         this.imgUrl = imgUrl;
         this.socialType = socialType;
         this.fcmToken = fcmToken;
+        this.x=x;
+        this.y=y;
     }
 
-    public void toUpdateUser(String username,String email,String imgUrl){
-        this.username=username;
-        this.email=email;
-        this.imgUrl=imgUrl;
-    }
-
-    public void inserFcmToken(String fcmToken){
-        this.fcmToken=fcmToken;
-    }
 }
