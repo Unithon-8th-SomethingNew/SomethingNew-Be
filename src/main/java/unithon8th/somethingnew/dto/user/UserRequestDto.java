@@ -20,7 +20,9 @@ public class UserRequestDto {
     private SocialType socialType;
     private String imgURL;
     private String fcmToken;
-
+    private String street;
+    private String x;
+    private String y;
 
     //커밋용주석
     //UserRequestDto를 User Entity로 변환하여 return
