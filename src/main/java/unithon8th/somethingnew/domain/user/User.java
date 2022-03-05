@@ -48,8 +48,6 @@ public class User {//커밋용주석
     private boolean canCall = false;
 
 
-
-
     public User(String username, String email, String socialId, Role role, String imgUrl, SocialType socialType, String fcmToken) {
         this.username = username;
         this.email = email;
