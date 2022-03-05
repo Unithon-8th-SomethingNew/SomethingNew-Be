@@ -50,13 +50,17 @@ public class User {//커밋용주석
     @Column(name = "street")
     private String street;
 
+    @Column(name = "x")
     private String x;
 
+    @Column(name = "y")
     private String y;
 
+    @Column(name = "toTime")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime toTime;
 
+    @Column(name = "fromTime")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime fromTime;
 
