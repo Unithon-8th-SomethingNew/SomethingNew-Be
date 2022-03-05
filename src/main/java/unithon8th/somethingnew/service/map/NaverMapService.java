@@ -55,14 +55,13 @@ public class NaverMapService {
             TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {};
             Map<String,Object>jsonMap = mapper.readValue(jsonString, typeRef);
 
-            @SuppressWarnings("unchecked")
-            List<Map<String,String>>docList = (List<Map<String, String>>) jsonMap.get("documents");
-            Map<String,String> adList =(Map<String, String>)docList.get(0);
-            XYMap.put("x",adList.get("x"));
-            XYMap.put("y",adList.get("y"));
-            String x = XYMap.get("x");
-            String y = XYMap.get("y");
-
+            if(jsonMap.size()!=0) {
+                @SuppressWarnings("unchecked")
+                List<Map<String, String>> docList = (List<Map<String, String>>) jsonMap.get("documents");
+                Map<String, String> adList = (Map<String, String>) docList.get(0);
+                XYMap.put("x", adList.get("x"));
+                XYMap.put("y", adList.get("y"));
+            }
 
 
         } catch (UnsupportedEncodingException e) {
