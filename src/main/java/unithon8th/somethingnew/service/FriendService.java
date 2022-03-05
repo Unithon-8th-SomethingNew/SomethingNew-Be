@@ -7,7 +7,7 @@ import unithon8th.somethingnew.domain.friend.FriendRepository;
 import unithon8th.somethingnew.domain.user.User;
 import unithon8th.somethingnew.domain.user.UserRepository;
 import unithon8th.somethingnew.dto.friend.FriendLocationResponseDto;
-import unithon8th.somethingnew.dto.friend.UserFriendResponseDto;
+import unithon8th.somethingnew.dto.friend.FriendResponseDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class FriendService {
         } else return null;
     }
 
-    public List<UserFriendResponseDto> getUserFriendResponseDtos(Long userId) {
+    public List<FriendResponseDto> getUserFriendResponseDtos(Long userId) {
         List<Friend> friendList = friendRepository.findByFromUserIdOrToUserId(userId, userId);
         List<Long> friendsIdList= new ArrayList<>();
         for (Friend friend : friendList) {
@@ -46,10 +46,10 @@ public class FriendService {
             else
                 friendsIdList.add(friend.getFromUserId());
         }
-        List<UserFriendResponseDto> userList = new ArrayList<>();
+        List<FriendResponseDto> userList = new ArrayList<>();
         for (Long id : friendsIdList) {
             User user = userService.findUserByUserId(id).get();
-            UserFriendResponseDto userDto = UserFriendResponseDto.builder()
+            FriendResponseDto userDto = FriendResponseDto.builder()
                     .email(user.getEmail())
                     .imgUrl(user.getImgUrl())
                     .canCall(user.isCanCall())

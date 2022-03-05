@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class UserFriendResponseDto {
+public class FriendResponseDto {
     private Long userId;
     private String username;
     private String email;
@@ -13,7 +13,7 @@ public class UserFriendResponseDto {
     private String street;
 
     @Builder
-    public UserFriendResponseDto(Long userId, String username, String email, String imgUrl, boolean canCall, String street) {
+    public FriendResponseDto(Long userId, String username, String email, String imgUrl, boolean canCall, String street) {
         this.userId = userId;
         this.username = username;
         this.email = email;
