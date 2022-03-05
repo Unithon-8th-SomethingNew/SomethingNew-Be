@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import unithon8th.somethingnew.domain.friend.Friend;
 import unithon8th.somethingnew.domain.user.Role;
 import unithon8th.somethingnew.domain.user.SocialType;
 import unithon8th.somethingnew.domain.user.User;

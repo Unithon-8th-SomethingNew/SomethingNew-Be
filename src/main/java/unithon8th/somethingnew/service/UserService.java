@@ -1,10 +1,11 @@
-package unithon8th.somethingnew.service.user;
+package unithon8th.somethingnew.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import unithon8th.somethingnew.domain.user.SocialType;
 import unithon8th.somethingnew.domain.user.User;
 import unithon8th.somethingnew.domain.user.UserRepository;
+import unithon8th.somethingnew.dto.user.UserCallableRequestDto;
 import unithon8th.somethingnew.dto.user.UserRequestDto;
 
 import javax.transaction.Transactional;
@@ -38,9 +39,12 @@ public class UserService {
         return user;
     }
 
-
     public void updateUserBySocial(UserRequestDto userInfo){
         userRepository.updateUserBySocialIdAndSocialType(userInfo.getUsername(), userInfo.getEmail(), userInfo.getImgURL(), userInfo.getSocialId(), userInfo.getSocialType());
+    }
+
+    public void updateUserCanCall(UserCallableRequestDto userCallableRequestDto){
+        userRepository.updateUserCanCall(userCallableRequestDto.getUserId(), userCallableRequestDto.isCanCall());
     }
 
 }
