@@ -149,7 +149,7 @@ Java 1.8
 
 ⚙️ **Framework**
 
-Spring boot / Spring Data Jpa
+Spring boot / Spring Data Jpa / Swagger
 
 ⚙️ **AWS**
 
@@ -167,14 +167,13 @@ PostMan
 
 <br>
 
-## 🎥 앱 시연 영상
+## 🎥 앱 시연 GIF
 
 
 
-<video controls preload="auto">
-  <source src="https://user-images.githubusercontent.com/84304802/157054563-8483f59e-0aad-44f3-88ae-be84b47244a5.mp4" type="mp4">
-  "띵-동" 시연 영상
-</video>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/84304802/157064651-0c91be20-834a-4b23-92bd-4ef79b4ed1e8.gif" alt="띵동 시연 GIF">
+</p>
 
 <br>
 
