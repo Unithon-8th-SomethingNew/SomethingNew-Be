@@ -195,8 +195,8 @@ PostMan
 
 #### 🎨 디자인
 
-- 윤수정
-- 박리현
+- 윤수정 [Email] abcabcbabc@gmail.com
+- 박리현 [Email] leehyeon1004@naver.com
 
 <br>
 
